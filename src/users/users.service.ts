@@ -11,5 +11,11 @@ export class UsersService {
     async create(username: string, password: string,  licensePlate: string) {
         return this.userRepository.save({username, password, licensePlate}) // Never save passwords in clear text!
     }
+
+    async findByUsername(username: string) {
+      return this.userRepository.findOne({ where: { username } });
+    }
+
+
         
 }
