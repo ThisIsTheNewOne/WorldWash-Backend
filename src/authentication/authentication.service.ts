@@ -38,6 +38,8 @@ export class AuthenticationService {
     console.log("test testes", payload)
     return {
       access_token: this.jwtService.sign(payload),
+      user: payload.username,
+      userId: payload.id
     };
   }
 
