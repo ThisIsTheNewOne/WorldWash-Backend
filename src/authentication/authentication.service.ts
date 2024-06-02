@@ -7,7 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthenticationService {
-  // WHAT IS A CONSTRUCTOR IN THIS SITUATION ?
+  
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
@@ -32,10 +32,14 @@ export class AuthenticationService {
   }
 
   async login(user: any) {
+    const userFromDb = await this.usersService.findByUsername(user.username)
+
     const payload = { 
-      username: user.username, id: user.id
+      username: user.username, id: userFromDb.id
     };
-    console.log("test testes", payload)
+
+    console.log("test testes", payload, this.jwtService.sign(payload))
+
     return {
       access_token: this.jwtService.sign(payload),
       user: payload.username,

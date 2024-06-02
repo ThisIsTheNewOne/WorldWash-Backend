@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { ProfilePictureService } from 'src/profile-picture/profile-picture.service';
 
 
 describe('AppController (e2e)', () => {
@@ -10,7 +11,10 @@ describe('AppController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+    // .overrideProvider(ProfilePictureService)
+    // .useClass(MokeProdilePictureService)
+    .compile();
 
 
 

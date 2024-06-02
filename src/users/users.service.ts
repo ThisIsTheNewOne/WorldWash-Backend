@@ -16,8 +16,20 @@ export class UsersService {
       return this.userRepository.findOne({ where: { username } });
     }
 
+    async findUserById(id: number) : Promise<UserEntity> {
+      return this.userRepository.findOne({where: {id: id}});
+  }
+
     async findById(id: number) {
       return this.userRepository.findOne({ where: { id } });
     }
         
+    async updateRole(id: number, role: Role) {
+      const user = await this.findById(id);
+      if (!user) {
+        throw new Error('User not found');
+      }
+      user.role = role;
+      return this.userRepository.save(user);
+    } 
 }

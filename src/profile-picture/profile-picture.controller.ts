@@ -25,6 +25,7 @@ export class ProfilePictureController {
     return { message: 'You got through the gate' };
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() createEntryDto: CreateProfilePictureDto) {
     try {
@@ -41,7 +42,7 @@ export class ProfilePictureController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':userId')
   async getProfilePicture(@Param('userId') userId: string) {
     try {
@@ -57,7 +58,7 @@ export class ProfilePictureController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':userId')
   async deleteProfilePicture(@Param('userId') userId: string) {
     try {
@@ -73,7 +74,7 @@ export class ProfilePictureController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put(':userId')
   async updateProfilePicture(@Param('userId') userId: string, @Body() updateEntryDto: CreateProfilePictureDto) {
     try {

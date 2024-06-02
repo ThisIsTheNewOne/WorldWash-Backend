@@ -7,7 +7,8 @@ import { Repository } from 'typeorm';
 import { HttpService } from '@nestjs/axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { AxiosError } from 'axios';
-import { UsersService } from 'src/users/users.service';
+// import { UsersService } from 'src/users/users.service';
+import { UsersService } from './../users/users.service';
 
 @Injectable()
 export class ProfilePictureService {
@@ -38,7 +39,6 @@ export class ProfilePictureService {
   } 
 
   async saveImage(profilePhoto: string, userId: string) {
-  // async saveImage(profilePhoto: string): Promise<ProfilePictureEntry> {
     const imageData = await this.addImageToFreeImage(profilePhoto)
 
     const user = await  this.usersService.findById(Number(userId));
